@@ -13,4 +13,16 @@ describe('FluxoTrabalho', () => {
     const fluxoTrabalho = new FluxoTrabalho(NOME)
     expect(fluxoTrabalho.nome).toBe(NOME)
   })
+
+  test('deve lançar um erro caso o nome seja undefined', () => {
+    expect(() => new FluxoTrabalho(undefined)).toThrow()
+  })
+
+  test('deve lançar um erro caso o nome seja null', () => {
+    expect(() => new FluxoTrabalho(null)).toThrow()
+  })
+
+  test('deve lançar um erro caso o nome seja vazio', () => {
+    expect(() => new FluxoTrabalho('')).toThrow()
+  })
 })

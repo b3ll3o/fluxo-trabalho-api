@@ -1,5 +1,12 @@
 export class FluxoTrabalho {
-  constructor(private _nome: string) { }
+  private _nome: string
+
+  constructor(nome: string) { 
+    if(nome === undefined || nome === null || nome === '')
+      throw new Error('Nome do fluxo de trabalho inválido.')
+
+    this._nome = nome
+  }
 
   get nome(){
     return this._nome
