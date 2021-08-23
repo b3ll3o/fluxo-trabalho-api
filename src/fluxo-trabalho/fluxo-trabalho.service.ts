@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { FluxoTrabalhocadastradoDto, NovoFluxoTrabalhoDto } from './application/dto';
+import { FluxoTrabalhoCadastradoDto, NovoFluxoTrabalhoDto } from './application/dto';
+import { FluxoTrabalho } from './domain/entities/fluxo-trabalho';
 
 @Injectable()
 export class FluxoTrabalhoService {
 
-  private fluxos: FluxoTrabalhocadastradoDto[]
+  private fluxos: FluxoTrabalho[]
   private contador: number
 
   constructor(){
@@ -12,9 +13,8 @@ export class FluxoTrabalhoService {
     this.contador = 1
   }
 
-  adicionaFluxoTrabalho(novoFluxoTrabalho: NovoFluxoTrabalhoDto): FluxoTrabalhocadastradoDto {
-    const fluxoCadastrado = new FluxoTrabalhocadastradoDto(this.contador, novoFluxoTrabalho.nome)
-    this.fluxos.push(fluxoCadastrado)
-    return fluxoCadastrado
+  adicionaFluxoTrabalho(novoFluxoTrabalho: NovoFluxoTrabalhoDto): FluxoTrabalhoCadastradoDto {
+    this.fluxos.push(new FluxoTrabalho(novoFluxoTrabalho.nome))
+    return new FluxoTrabalhoCadastradoDto(this.contador++, novoFluxoTrabalho.nome)
   }
 }

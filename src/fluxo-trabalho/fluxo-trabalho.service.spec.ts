@@ -4,8 +4,8 @@ import { FluxoTrabalhoService } from './fluxo-trabalho.service';
 
 const NOME = 'fluxo_trabalho'
 
-function fluxoTrabalhoFactory(): NovoFluxoTrabalhoDto {
-  return new NovoFluxoTrabalhoDto(NOME)
+function fluxoTrabalhoFactory(nome=NOME): NovoFluxoTrabalhoDto {
+  return new NovoFluxoTrabalhoDto(nome)
 }
 
 describe('FluxoTrabalhoService', () => {
@@ -27,5 +27,17 @@ describe('FluxoTrabalhoService', () => {
     const fluxo = service.adicionaFluxoTrabalho(fluxoTrabalhoFactory())
     expect(fluxo.id).toBe(1)
     expect(fluxo.nome).toBe(NOME)
+  })
+
+  test('deve lançar um erro caso nome do fluxo de trabalho seja undefined', () => {
+    expect(() => service.adicionaFluxoTrabalho(new NovoFluxoTrabalhoDto(undefined))).toThrow()
+  })
+
+  test('deve lançar um erro caso nome do fluxo de trabalho seja null', () => {
+    expect(() => service.adicionaFluxoTrabalho(fluxoTrabalhoFactory(null))).toThrow()
+  })
+
+  test('deve lançar um erro caso nome do fluxo de trabalho seja vazio', () => {
+    expect(() => service.adicionaFluxoTrabalho(fluxoTrabalhoFactory(''))).toThrow()
   })
 });
