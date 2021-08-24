@@ -2,9 +2,7 @@ import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import {
   FluxoTrabalhoCadastradoDto,
-  NovaTarefaDto,
   NovoFluxoTrabalhoDto,
-  TarefaCadastradaDto,
 } from './application/dto';
 import { FluxoTrabalhoController } from './fluxo-trabalho.controller';
 import { FluxoTrabalhoService } from './application/services/fluxo-trabalho.service';
@@ -14,10 +12,6 @@ const NOME_TAREFA = 'tarefa';
 
 function novoFluxoTrabalhoFactory(nome = NOME): NovoFluxoTrabalhoDto {
   return new NovoFluxoTrabalhoDto(nome);
-}
-
-function novaTarefaFactory(nome = NOME_TAREFA): NovaTarefaDto {
-  return new NovaTarefaDto(nome);
 }
 
 describe('FluxoTrabalhoController', () => {
@@ -63,10 +57,8 @@ describe('FluxoTrabalhoController', () => {
   //cadastraTarefaEmUmFluxoTrabalho
   test('deve retorna uma nova tarefa cadastrada', () => {
     const res = controller.cadastraTarefaEmUmFluxoTrabalho(
-      1,
-      novaTarefaFactory(),
-    ) as TarefaCadastradaDto;
-    expect(res.id).toBe(1);
-    expect(res.nome).toBe(NOME_TAREFA);
+      1
+    ) as boolean;
+    expect(res).toBeTruthy();
   });
 });

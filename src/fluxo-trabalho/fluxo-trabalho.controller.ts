@@ -8,9 +8,7 @@ import {
 } from '@nestjs/common';
 import {
   FluxoTrabalhoCadastradoDto,
-  NovaTarefaDto,
   NovoFluxoTrabalhoDto,
-  TarefaCadastradaDto,
 } from './application/dto';
 import { FluxoTrabalhoService } from './application/services/fluxo-trabalho.service';
 
@@ -34,11 +32,10 @@ export class FluxoTrabalhoController {
 
   @Post(':id/tarefa')
   cadastraTarefaEmUmFluxoTrabalho(
-    @Param('id') id: number,
-    @Body() novaTarefa: NovaTarefaDto,
-  ): TarefaCadastradaDto | BadRequestException {
+    @Param('id') id: number
+  ): boolean | BadRequestException {
     try {
-      return new TarefaCadastradaDto(id, novaTarefa.nome);
+      return true
     } catch (e) {
       return new BadRequestException(e);
     }
