@@ -1,13 +1,18 @@
 import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { FluxoTrabalhoCadastradoDto, NovoFluxoTrabalhoDto } from './application/dto';
+import { FluxoTrabalhoCadastradoDto, NovaTarefaDto, NovoFluxoTrabalhoDto } from './application/dto';
 import { FluxoTrabalhoController } from './fluxo-trabalho.controller';
 import { FluxoTrabalhoService } from './fluxo-trabalho.service';
 
 const NOME = 'fluxo_trabalho'
+const NOME_TAREFA = 'tarefa'
 
 function novoFluxoTrabalhoFactory(nome=NOME): NovoFluxoTrabalhoDto {
   return new NovoFluxoTrabalhoDto(nome)
+}
+
+function novaTarefaFactory(nome=NOME_TAREFA): NovaTarefaDto {
+  return new NovaTarefaDto(nome)
 }
 
 describe('FluxoTrabalhoController', () => {
@@ -26,6 +31,7 @@ describe('FluxoTrabalhoController', () => {
     expect(controller).toBeDefined();
   });
 
+  //adicionaNovoFluxoTrabalho
   test('deve retorna um novo fluxo de trabalho cadastrado', () => {
     const res = controller.adicionaNovoFluxoTrabalho(novoFluxoTrabalhoFactory()) as FluxoTrabalhoCadastradoDto
     expect(res.id).toBe(1)
@@ -37,10 +43,18 @@ describe('FluxoTrabalhoController', () => {
     expect(res.getStatus()).toBe(400)
   })
 
+  //listaFluxosTrabalho
   test('deve retorna uma lista de fluxos de trabalhos cadastrados', () => {
     controller.adicionaNovoFluxoTrabalho(novoFluxoTrabalhoFactory())
     const fluxos = controller.listaFluxosTrabalho()
     expect(fluxos).toBeDefined()
     expect(fluxos.length).toBeGreaterThan(0)
+  })
+
+  //cadastraTarefaEmUmFluxoTrabalho
+  test('deve retorna uma nova tarefa cadastrada', () => {
+    const res = controller.cadastraTarefaEmUmFluxoTrabalho(1, novaTarefaFactory())
+    expect(res.id).toBe(1)
+    expect(res.nome).toBe(NOME_TAREFA)
   })
 });
