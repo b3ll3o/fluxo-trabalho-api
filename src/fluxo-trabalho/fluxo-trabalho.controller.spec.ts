@@ -36,4 +36,11 @@ describe('FluxoTrabalhoController', () => {
     const res = controller.adicionaNovoFluxoTrabalho(novoFluxoTrabalhoFactory('')) as BadRequestException
     expect(res.getStatus()).toBe(400)
   })
+
+  test('deve retorna uma lista de fluxos de trabalhos cadastrados', () => {
+    controller.adicionaNovoFluxoTrabalho(novoFluxoTrabalhoFactory())
+    const fluxos = controller.listaFluxosTrabalho()
+    expect(fluxos).toBeDefined()
+    expect(fluxos.length).toBeGreaterThan(0)
+  })
 });

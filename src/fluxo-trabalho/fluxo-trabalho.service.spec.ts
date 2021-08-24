@@ -23,6 +23,7 @@ describe('FluxoTrabalhoService', () => {
     expect(service).toBeDefined();
   });
 
+  //adicionaFluxoTrabalho
   test('deve retorna um fluxo de trabalho cadastrado', () => {
     const fluxo = service.adicionaFluxoTrabalho(fluxoTrabalhoFactory())
     expect(fluxo.id).toBe(1)
@@ -39,5 +40,12 @@ describe('FluxoTrabalhoService', () => {
 
   test('deve lançar um erro caso nome do fluxo de trabalho seja vazio', () => {
     expect(() => service.adicionaFluxoTrabalho(fluxoTrabalhoFactory(''))).toThrow()
+  })
+
+  //listaFluxosTrabalho
+  test('deve retorna uma lista de fluxos de trabalhos cadastrados', () => {
+    service.adicionaFluxoTrabalho(fluxoTrabalhoFactory())
+    const fluxos = service.listaFluxosTrabalho()
+    expect(fluxos.length).toBeGreaterThan(0)
   })
 });

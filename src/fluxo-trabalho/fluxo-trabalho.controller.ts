@@ -1,5 +1,5 @@
-import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
-import { NovoFluxoTrabalhoDto } from './application/dto';
+import { BadRequestException, Body, Controller, Get, Post } from '@nestjs/common';
+import { FluxoTrabalhoCadastradoDto, NovoFluxoTrabalhoDto } from './application/dto';
 import { FluxoTrabalhoService } from './fluxo-trabalho.service';
 
 @Controller('fluxo-trabalho')
@@ -13,5 +13,10 @@ export class FluxoTrabalhoController {
     } catch (e) {
       return new BadRequestException(e.message)
     }
+  }
+
+  @Get()
+  listaFluxosTrabalho(): FluxoTrabalhoCadastradoDto[] {
+    return this.fluxoTrabalhoService.listaFluxosTrabalho()
   }
 }

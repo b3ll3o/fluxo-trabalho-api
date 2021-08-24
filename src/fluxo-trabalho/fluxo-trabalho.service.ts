@@ -6,15 +6,28 @@ import { FluxoTrabalho } from './domain/entities/fluxo-trabalho';
 export class FluxoTrabalhoService {
 
   private fluxos: FluxoTrabalho[]
+  private fluxosCadastrados: FluxoTrabalhoCadastradoDto[]
   private contador: number
 
   constructor(){
     this.fluxos = []
+    this.fluxosCadastrados = []
     this.contador = 1
   }
 
   adicionaFluxoTrabalho(novoFluxoTrabalho: NovoFluxoTrabalhoDto): FluxoTrabalhoCadastradoDto {
-    this.fluxos.push(new FluxoTrabalho(novoFluxoTrabalho.nome))
-    return new FluxoTrabalhoCadastradoDto(this.contador++, novoFluxoTrabalho.nome)
+    const fluxo = new FluxoTrabalho(novoFluxoTrabalho.nome)
+    this.fluxos.push(fluxo)
+
+    const fluxoCadastrado = new FluxoTrabalhoCadastradoDto(this.contador, fluxo.nome)
+    this.fluxosCadastrados.push(fluxoCadastrado)
+
+    this.contador++
+
+    return fluxoCadastrado
+  }
+
+  listaFluxosTrabalho(): FluxoTrabalhoCadastradoDto[] {
+    return this.fluxosCadastrados
   }
 }
