@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { NovoFluxoTrabalhoDto } from './application/dto';
+import { NovoFluxoTrabalhoDto } from '../dto';
 import { FluxoTrabalhoService } from './fluxo-trabalho.service';
 
 const NOME = 'fluxo_trabalho'

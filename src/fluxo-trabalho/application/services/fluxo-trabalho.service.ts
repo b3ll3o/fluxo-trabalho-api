@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { FluxoTrabalhoCadastradoDto, NovoFluxoTrabalhoDto } from './application/dto';
-import { FluxoTrabalho } from './domain/entities/fluxo-trabalho';
+import { FluxoTrabalhoCadastradoDto, NovoFluxoTrabalhoDto } from '../../application/dto';
+import { FluxoTrabalho } from '../../domain/entities/fluxo-trabalho';
 
 @Injectable()
 export class FluxoTrabalhoService {

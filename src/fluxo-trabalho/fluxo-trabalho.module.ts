@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { FluxoTrabalhoService } from './fluxo-trabalho.service';
+import { FluxoTrabalhoService } from './application/services/fluxo-trabalho.service';
 import { FluxoTrabalhoController } from './fluxo-trabalho.controller';
 
 @Module({

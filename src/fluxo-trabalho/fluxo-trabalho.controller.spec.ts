@@ -2,7 +2,7 @@ import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { FluxoTrabalhoCadastradoDto, NovaTarefaDto, NovoFluxoTrabalhoDto, TarefaCadastradaDto } from './application/dto';
 import { FluxoTrabalhoController } from './fluxo-trabalho.controller';
-import { FluxoTrabalhoService } from './fluxo-trabalho.service';
+import { FluxoTrabalhoService } from './application/services/fluxo-trabalho.service';
 
 const NOME = 'fluxo_trabalho'
 const NOME_TAREFA = 'tarefa'

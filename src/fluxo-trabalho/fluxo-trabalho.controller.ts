@@ -1,6 +1,6 @@
 import { BadRequestException, Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { FluxoTrabalhoCadastradoDto, NovaTarefaDto, NovoFluxoTrabalhoDto, TarefaCadastradaDto } from './application/dto';
-import { FluxoTrabalhoService } from './fluxo-trabalho.service';
+import { FluxoTrabalhoService } from './application/services/fluxo-trabalho.service';
 
 @Controller('fluxo-trabalho')
 export class FluxoTrabalhoController {
