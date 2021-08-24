@@ -1,6 +1,6 @@
 import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { FluxoTrabalhoCadastradoDto, NovaTarefaDto, NovoFluxoTrabalhoDto } from './application/dto';
+import { FluxoTrabalhoCadastradoDto, NovaTarefaDto, NovoFluxoTrabalhoDto, TarefaCadastradaDto } from './application/dto';
 import { FluxoTrabalhoController } from './fluxo-trabalho.controller';
 import { FluxoTrabalhoService } from './fluxo-trabalho.service';
 
@@ -53,7 +53,7 @@ describe('FluxoTrabalhoController', () => {
 
   //cadastraTarefaEmUmFluxoTrabalho
   test('deve retorna uma nova tarefa cadastrada', () => {
-    const res = controller.cadastraTarefaEmUmFluxoTrabalho(1, novaTarefaFactory())
+    const res = controller.cadastraTarefaEmUmFluxoTrabalho(1, novaTarefaFactory()) as TarefaCadastradaDto
     expect(res.id).toBe(1)
     expect(res.nome).toBe(NOME_TAREFA)
   })

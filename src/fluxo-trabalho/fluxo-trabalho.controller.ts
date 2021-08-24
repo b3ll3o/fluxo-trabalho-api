@@ -21,7 +21,11 @@ export class FluxoTrabalhoController {
   }
 
   @Post(':id/tarefa')
-  cadastraTarefaEmUmFluxoTrabalho(@Param('id') id: number, @Body() novaTarefa: NovaTarefaDto): TarefaCadastradaDto {
-    return new TarefaCadastradaDto(id, novaTarefa.nome)
+  cadastraTarefaEmUmFluxoTrabalho(@Param('id') id: number, @Body() novaTarefa: NovaTarefaDto): TarefaCadastradaDto | BadRequestException {
+    try {
+      return new TarefaCadastradaDto(id, novaTarefa.nome)
+    } catch (e) {
+      return new BadRequestException(e)
+    }
   }
 }
