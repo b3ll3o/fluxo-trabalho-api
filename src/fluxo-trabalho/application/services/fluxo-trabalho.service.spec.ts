@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { NovoFluxoTrabalhoDto } from '../dto';
 import { FluxoTrabalhoService } from './fluxo-trabalho.service';
 
-const NOME = 'fluxo_trabalho'
+const NOME = 'fluxo_trabalho';
 
-function fluxoTrabalhoFactory(nome=NOME): NovoFluxoTrabalhoDto {
-  return new NovoFluxoTrabalhoDto(nome)
+function fluxoTrabalhoFactory(nome = NOME): NovoFluxoTrabalhoDto {
+  return new NovoFluxoTrabalhoDto(nome);
 }
 
 describe('FluxoTrabalhoService', () => {
@@ -25,27 +25,33 @@ describe('FluxoTrabalhoService', () => {
 
   //adicionaFluxoTrabalho
   test('deve retorna um fluxo de trabalho cadastrado', () => {
-    const fluxo = service.adicionaFluxoTrabalho(fluxoTrabalhoFactory())
-    expect(fluxo.id).toBe(1)
-    expect(fluxo.nome).toBe(NOME)
-  })
+    const fluxo = service.adicionaFluxoTrabalho(fluxoTrabalhoFactory());
+    expect(fluxo.id).toBe(1);
+    expect(fluxo.nome).toBe(NOME);
+  });
 
   test('deve lançar um erro caso nome do fluxo de trabalho seja undefined', () => {
-    expect(() => service.adicionaFluxoTrabalho(new NovoFluxoTrabalhoDto(undefined))).toThrow()
-  })
+    expect(() =>
+      service.adicionaFluxoTrabalho(new NovoFluxoTrabalhoDto(undefined)),
+    ).toThrow();
+  });
 
   test('deve lançar um erro caso nome do fluxo de trabalho seja null', () => {
-    expect(() => service.adicionaFluxoTrabalho(fluxoTrabalhoFactory(null))).toThrow()
-  })
+    expect(() =>
+      service.adicionaFluxoTrabalho(fluxoTrabalhoFactory(null)),
+    ).toThrow();
+  });
 
   test('deve lançar um erro caso nome do fluxo de trabalho seja vazio', () => {
-    expect(() => service.adicionaFluxoTrabalho(fluxoTrabalhoFactory(''))).toThrow()
-  })
+    expect(() =>
+      service.adicionaFluxoTrabalho(fluxoTrabalhoFactory('')),
+    ).toThrow();
+  });
 
   //listaFluxosTrabalho
   test('deve retorna uma lista de fluxos de trabalhos cadastrados', () => {
-    service.adicionaFluxoTrabalho(fluxoTrabalhoFactory())
-    const fluxos = service.listaFluxosTrabalho()
-    expect(fluxos.length).toBeGreaterThan(0)
-  })
+    service.adicionaFluxoTrabalho(fluxoTrabalhoFactory());
+    const fluxos = service.listaFluxosTrabalho();
+    expect(fluxos.length).toBeGreaterThan(0);
+  });
 });

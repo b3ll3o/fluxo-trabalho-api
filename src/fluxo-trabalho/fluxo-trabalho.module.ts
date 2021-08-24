@@ -4,6 +4,6 @@ import { FluxoTrabalhoController } from './fluxo-trabalho.controller';
 
 @Module({
   controllers: [FluxoTrabalhoController],
-  providers: [FluxoTrabalhoService]
+  providers: [FluxoTrabalhoService],
 })
 export class FluxoTrabalhoModule {}
